@@ -15,7 +15,16 @@ html {
   border: none;
 }
 
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 button, input {
   font-family: inherit;
   font-size: 100%;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
 }
