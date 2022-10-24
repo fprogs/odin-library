@@ -10,3 +10,40 @@ function Book(title, author, totalPages, isRead) {
 function addBookToLibrary() {
   // do stuff here
 }
+
+function createCardElement(book) {
+  const card = document.createElement("div");
+  const cardContent = card.appendChild(document.createElement("div"));
+  const cardFooter = card.appendChild(document.createElement("div"));
+  const bookTitle = cardContent.appendChild(document.createElement("h5"));
+  const bookAuthor = cardContent.appendChild(document.createElement("p"));
+  const totalPages = cardContent.appendChild(document.createElement("p"));
+  const checkboxDiv = cardContent.appendChild(document.createElement("div"));
+  const label = checkboxDiv.appendChild(document.createElement("label"));
+  const checkbox = checkboxDiv.appendChild(document.createElement("input"));
+  const deleteButton = cardFooter.appendChild(document.createElement("button"));
+
+  card.classList.add("card");
+  cardContent.classList.add("card-content");
+  cardFooter.classList.add("card-footer");
+  bookTitle.classList.add("book-title");
+  bookAuthor.classList.add("book-author");
+  totalPages.classList.add("total-pages");
+  checkboxDiv.classList.add("is-read-checkbox");
+  checkbox.classList.add("checkbox")
+  deleteButton.classList.add("delete-book-button");
+
+  label.setAttribute("for", "checkbox");
+  checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("id", `checkbox-${myLibrary.length}`);
+  deleteButton.setAttribute("type", "button");
+
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = `by ${book.author}`;
+  totalPages.textContent = `${book.totalPages} pages`;
+  label.textContent = "Read?";
+  deleteButton.textContent = "Delete";
+  checkbox.checked = book.isRead;
+
+  return card;
+}
