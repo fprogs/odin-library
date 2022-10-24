@@ -39,3 +39,37 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  text-align: center;
+  background-color: gray;
+  border-radius: 10px;
+}
+
+.card-content > * {
+  margin-bottom: 0.5rem;
+}
+
+.book-title {
+  font-size: 1.25rem;
+}
+
+.book-author {
+  font-size: 0.9rem;
+}
+
+#checkbox {
+  height: 1rem;
+  width: 1rem;
+}
+
+.delete-book-button {
+  width: 100%;
+  padding: 0.25rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
