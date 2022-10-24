@@ -7,8 +7,36 @@ function Book(title, author, totalPages, isRead) {
   this.isRead = !!isRead;
 }
 
-function addBookToLibrary() {
-  // do stuff here
+function displayForm(event) {
+  const form = event.target.form;
+  form.style.display = "block";
+}
+
+function hideForm(form) {
+  form.reset();
+  form.style.display = "none";
+}
+
+function addBookToLibrary(event) {
+  event.preventDefault();
+  const form = event.target;
+  const bookInfo = new FormData(form);
+  const book = new Book(
+    bookInfo.get("title"),
+    bookInfo.get("author"),
+    bookInfo.get("pages"),
+    bookInfo.has("isRead")
+  );
+  const card = createCardElement(book);
+  myLibrary.push(book);
+  document.querySelector(".library").appendChild(card)
+  hideForm(form);
+}
+
+function cancleForm(event) {
+  const form = event.target.form;
+  console.log(event);
+  hideForm(form);
 }
 
 function createCardElement(book) {
@@ -48,3 +76,10 @@ function createCardElement(book) {
 
   return card;
 }
+
+const newBookButton = document.querySelector("#new-book-button");
+const form = document.querySelector("#add-book-form");
+const cancelButton = document.querySelector("#cancle-button");
+newBookButton.addEventListener("click", displayForm);
+form.addEventListener("submit", addBookToLibrary);
+cancelButton.addEventListener("click", cancleForm);
