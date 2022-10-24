@@ -35,7 +35,6 @@ function addBookToLibrary(event) {
 
 function cancleForm(event) {
   const form = event.target.form;
-  console.log(event);
   hideForm(form);
 }
 
@@ -45,6 +44,19 @@ function bookIsReadToggle(event) {
   const id = checkbox.getAttribute("id");
   const index = parseInt(id.match(regex)[0]);
   myLibrary[index].isRead = !myLibrary[index].isRead;
+}
+
+function deleteBook(event) {
+  const card = event.target.parentElement.parentElement;
+  const checkbox = event.target.parentElement.previousElementSibling.lastElementChild.lastElementChild;
+  const regex = /\d+$/;
+  const id = checkbox.getAttribute("id");
+  const index = parseInt(id.match(regex)[0]);
+  myLibrary.splice(index, 1);
+  for (let i = index; i < myLibrary.length; i++) {
+    myLibrary[i].checkbox.setAttribute("id", `checkbox-${i}`);
+  }
+  card.remove();
 }
 
 function createCardElement(book) {
@@ -83,6 +95,9 @@ function createCardElement(book) {
   bookRead.checked = book.isRead;
 
   bookRead.addEventListener("change", bookIsReadToggle);
+  deleteButton.addEventListener("click", deleteBook);
+
+  book.checkbox = bookRead;
 
   return card;
 }
