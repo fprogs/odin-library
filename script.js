@@ -39,6 +39,14 @@ function cancleForm(event) {
   hideForm(form);
 }
 
+function bookIsReadToggle(event) {
+  const checkbox = event.target;
+  const regex = /\d+$/;
+  const id = checkbox.getAttribute("id");
+  const index = parseInt(id.match(regex)[0]);
+  myLibrary[index].isRead = !myLibrary[index].isRead;
+}
+
 function createCardElement(book) {
   const card = document.createElement("div");
   const cardContent = card.appendChild(document.createElement("div"));
@@ -73,6 +81,8 @@ function createCardElement(book) {
   label.textContent = "Read?";
   deleteButton.textContent = "Delete";
   bookRead.checked = book.isRead;
+
+  bookRead.addEventListener("change", bookIsReadToggle);
 
   return card;
 }
