@@ -66,6 +66,7 @@ h1 {
 .checkbox {
   height: 1rem;
   width: 1rem;
+  margin-left: 5px;
 }
 
 .delete-book-button {
