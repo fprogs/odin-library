@@ -18,25 +18,25 @@ function createCardElement(book) {
   const bookTitle = cardContent.appendChild(document.createElement("h5"));
   const bookAuthor = cardContent.appendChild(document.createElement("p"));
   const totalPages = cardContent.appendChild(document.createElement("p"));
-  const checkboxDiv = cardContent.appendChild(document.createElement("div"));
-  const label = checkboxDiv.appendChild(document.createElement("label"));
-  const checkbox = checkboxDiv.appendChild(document.createElement("input"));
+  const bookReadContainer = cardContent.appendChild(document.createElement("div"));
+  const label = bookReadContainer.appendChild(document.createElement("label"));
+  const bookRead = bookReadContainer.appendChild(document.createElement("input"));
   const deleteButton = cardFooter.appendChild(document.createElement("button"));
 
   card.classList.add("card");
   cardContent.classList.add("card-content");
   cardFooter.classList.add("card-footer");
-  bookTitle.classList.add("book-title");
-  bookAuthor.classList.add("book-author");
-  totalPages.classList.add("total-pages");
-  checkboxDiv.classList.add("is-read-checkbox");
-  checkbox.classList.add("checkbox")
+  bookTitle.classList.add("title");
+  bookAuthor.classList.add("author");
+  totalPages.classList.add("pages");
+  bookReadContainer.classList.add("book-read-container");
+  bookRead.classList.add("book-read");
   deleteButton.classList.add("delete-book-button");
   
-  const checkboxId = `checkbox-${myLibrary.length}`;
-  label.setAttribute("for", checkboxId);
-  checkbox.setAttribute("type", "checkbox");
-  checkbox.setAttribute("id", checkboxId);
+  const bookReadId = `checkbox-${myLibrary.length}`;
+  label.setAttribute("for", bookReadId);
+  bookRead.setAttribute("type", "checkbox");
+  bookRead.setAttribute("id", bookReadId);
   deleteButton.setAttribute("type", "button");
 
   bookTitle.textContent = book.title;
@@ -44,7 +44,7 @@ function createCardElement(book) {
   totalPages.textContent = `${book.totalPages} pages`;
   label.textContent = "Read?";
   deleteButton.textContent = "Delete";
-  checkbox.checked = book.isRead;
+  bookRead.checked = book.isRead;
 
   return card;
 }
