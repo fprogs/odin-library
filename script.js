@@ -32,10 +32,11 @@ function createCardElement(book) {
   checkboxDiv.classList.add("is-read-checkbox");
   checkbox.classList.add("checkbox")
   deleteButton.classList.add("delete-book-button");
-
-  label.setAttribute("for", "checkbox");
+  
+  const checkboxId = `checkbox-${myLibrary.length}`;
+  label.setAttribute("for", checkboxId);
   checkbox.setAttribute("type", "checkbox");
-  checkbox.setAttribute("id", `checkbox-${myLibrary.length}`);
+  checkbox.setAttribute("id", checkboxId);
   deleteButton.setAttribute("type", "button");
 
   bookTitle.textContent = book.title;
